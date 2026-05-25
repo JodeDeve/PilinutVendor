@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Pilinut Vendor System";
+}
+
+<div class="home-hero">
+    <div class="hero-card">
+        <p style="color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; font-size: 0.9rem;">Welcome to PilHub</p>
+        <h1>Pilinut Inventory Made Simple</h1>
+        <p>A modern, intuitive inventory management system designed specifically for pilinut vendors. Track stock, manage products, and optimize your business operations with ease.</p>
+        
+        <div style="display: flex; gap: 1rem; margin-top: 2rem; justify-content: center; flex-wrap: wrap;">
+            <a asp-controller="Dashboard" asp-action="Index" class="btn-primary">📊 View Dashboard</a>
+            <a asp-controller="Inventory" asp-action="Index" class="btn-outline-secondary">📦 Browse Products</a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 2rem; margin-top: 3rem; text-align: left;">
+            <div>
+                <p style="font-size: 1.75rem; margin: 0; color: var(--primary); font-weight: 700;">Real-time</p>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Live inventory updates</p>
+            </div>
+            <div>
+                <p style="font-size: 1.75rem; margin: 0; color: var(--primary); font-weight: 700;">Simple</p>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Easy to use interface</p>
+            </div>
+            <div>
+                <p style="font-size: 1.75rem; margin: 0; color: var(--primary); font-weight: 700;">Fast</p>
+                <p style="margin: 0; color: var(--text-secondary); font-size: 0.9rem;">Quick operations</p>
+            </div>
+        </div>
+    </div>
+</div>

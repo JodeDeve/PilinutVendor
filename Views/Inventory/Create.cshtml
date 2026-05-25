@@ -1,0 +1,67 @@
+@model PilinutVendorSystem.Models.InventoryItem
+@{
+    ViewData["Title"] = "Add Product";
+}
+
+<div style="max-width: 650px; margin: 0 auto;">
+    <div class="page-header" style="margin-bottom: 2rem;">
+        <h1 class="page-title">Create New Product</h1>
+        <p class="page-subtitle">Add a new pilinut product to your inventory</p>
+    </div>
+
+    <div class="form-section">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+
+            <!-- Product Name -->
+            <div class="form-group">
+                <label asp-for="Name" class="form-label">Product Name *</label>
+                <input asp-for="Name" class="form-control" placeholder="e.g., Premium Pilinut" />
+                <span asp-validation-for="Name" style="color: var(--primary); font-size: 0.85rem;"></span>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label asp-for="Category" class="form-label">Category *</label>
+                <select asp-for="Category" class="form-select" asp-items="Html.GetEnumSelectList<PilinutVendorSystem.Models.CategoryType>()"></select>
+                <span asp-validation-for="Category" style="color: var(--primary); font-size: 0.85rem;"></span>
+            </div>
+
+            <!-- Quantity & Unit -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label asp-for="Quantity" class="form-label">Quantity *</label>
+                    <input asp-for="Quantity" type="number" step="0.01" class="form-control" placeholder="0" />
+                    <span asp-validation-for="Quantity" style="color: var(--primary); font-size: 0.85rem;"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Unit" class="form-label">Unit *</label>
+                    <select asp-for="Unit" class="form-select" asp-items="Html.GetEnumSelectList<PilinutVendorSystem.Models.UnitType>()"></select>
+                    <span asp-validation-for="Unit" style="color: var(--primary); font-size: 0.85rem;"></span>
+                </div>
+            </div>
+
+            <!-- Price -->
+            <div class="form-group">
+                <label asp-for="Price" class="form-label">Price (PHP) *</label>
+                <input asp-for="Price" type="number" step="0.01" class="form-control" placeholder="e.g., 250" />
+                <small>Price in Philippine Pesos</small>
+                <span asp-validation-for="Price" style="color: var(--primary); font-size: 0.85rem;"></span>
+            </div>
+
+            <!-- Product Image -->
+            <div class="form-group">
+                <label for="imageFile" class="form-label">Product Image</label>
+                <input type="file" id="imageFile" name="imageFile" class="form-control" accept="image/*" />
+                <small>JPG, PNG, GIF or WebP (optional)</small>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 1rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                <button type="submit" class="btn-primary" style="flex: 1;">Save Product</button>
+                <a asp-action="Index" class="btn-outline-secondary" style="flex: 1; text-align: center; display: flex; align-items: center; justify-content: center; text-decoration: none;">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

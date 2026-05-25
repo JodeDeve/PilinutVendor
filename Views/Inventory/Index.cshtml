@@ -1,0 +1,103 @@
+@model IEnumerable<PilinutVendorSystem.Models.InventoryItem>
+@{
+    ViewData["Title"] = "Products";
+    var selectedCategory = ViewData["SelectedCategory"] as string ?? string.Empty;
+
+    string GetUnitShortName(PilinutVendorSystem.Models.UnitType unit)
+    {
+        return unit switch
+        {
+            PilinutVendorSystem.Models.UnitType.Kilogram => "kg",
+            PilinutVendorSystem.Models.UnitType.Gram => "g",
+            PilinutVendorSystem.Models.UnitType.Pound => "lbs",
+            PilinutVendorSystem.Models.UnitType.Piece => "pcs",
+            _ => ""
+        };
+    }
+}
+
+<!-- Page Header -->
+<div class="page-header" style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;">
+    <div>
+        <h1 class="page-title">Products Catalog</h1>
+        <p class="page-subtitle">Manage and view all pilinut products</p>
+    </div>
+    <a asp-action="Create" class="btn-add">+ Add Product</a>
+</div>
+
+<!-- Filters -->
+<div class="inventory-filters">
+    <a href="@Url.Action("Index", "Inventory")" class="@(string.IsNullOrEmpty(selectedCategory) ? "active" : "")">All Products</a>
+    <a href="@Url.Action("Index", "Inventory", new { category = "Premium" })" class="@(selectedCategory == "Premium" ? "active" : "")">Premium</a>
+    <a href="@Url.Action("Index", "Inventory", new { category = "Regular" })" class="@(selectedCategory == "Regular" ? "active" : "")">Regular</a>
+</div>
+
+@if (!Model.Any())
+{
+    <div style="background: var(--bg-secondary); border-radius: var(--radius); padding: 3rem; text-align: center; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
+        <p style="font-size: 3rem; margin: 0 0 1rem 0;">📭</p>
+        <h2 style="color: var(--text-primary); margin-bottom: 0.5rem; font-size: 1.5rem;">No Products Found</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Start by adding your first pilinut product to the inventory.</p>
+        <a asp-action="Create" class="btn-add">Add First Product</a>
+    </div>
+}
+else
+{
+    <div class="inventory-grid">
+        @foreach (var item in Model)
+        {
+            <div class="inventory-card">
+                <div class="inventory-card-img">
+                    @if (!string.IsNullOrEmpty(item.ImagePath))
+                    {
+                        <img src="@item.ImagePath" alt="@item.Name" />
+                    }
+                    else
+                    {
+                        <span>🥜</span>
+                    }
+                </div>
+                <div class="inventory-card-body">
+                    <div class="inventory-card-title">@item.Name</div>
+                    
+                    <div class="inventory-card-detail">
+                        <strong>Category</strong>
+                        <span>@item.Category</span>
+                    </div>
+                    
+                    <div class="inventory-card-detail">
+                        <strong>Stock</strong>
+                        <span>@item.Quantity @GetUnitShortName(item.Unit)</span>
+                    </div>
+                    
+                    <div class="inventory-card-detail">
+                        <strong>Price</strong>
+                        <span>₱@item.Price.ToString("N2")</span>
+                    </div>
+                    
+                    <div style="margin-top: 1rem; margin-bottom: 1rem;">
+                        @if (item.Quantity == 0)
+                        {
+                            <span class="status-badge status-out">Out of Stock</span>
+                        }
+                        else if (item.Quantity < 20)
+                        {
+                            <span class="status-badge status-low">Low Stock</span>
+                        }
+                        else
+                        {
+                            <span class="status-badge status-fresh">In Stock</span>
+                        }
+                    </div>
+
+                    <div class="inventory-card-actions">
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn-small">👁 View</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn-small">✎ Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn-small btn-danger">🗑 Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
