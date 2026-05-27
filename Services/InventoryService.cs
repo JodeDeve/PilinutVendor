@@ -13,8 +13,8 @@ namespace PilinutVendorSystem.Services
         public InventoryService()
         {
             // Seed demo data
-            _items.Add(new InventoryItem { Id = _nextId++, Name = "Premium Pilinut", Category = CategoryType.Premium, Quantity = 50, Unit = UnitType.Kilogram, Price = 250m });
-            _items.Add(new InventoryItem { Id = _nextId++, Name = "Regular Pilinut", Category = CategoryType.Regular, Quantity = 100, Unit = UnitType.Kilogram, Price = 150m });
+            _items.Add(new InventoryItem { Id = _nextId++, Name = "Honey Glazed Crispy Pili", Category = CategoryType.HoneyGlazedCrispy, Quantity = 50, Unit = UnitType.Kilogram, Price = 250m });
+            _items.Add(new InventoryItem { Id = _nextId++, Name = "Salted Pili", Category = CategoryType.SaltedPili, Quantity = 100, Unit = UnitType.Kilogram, Price = 150m });
         }
 
         public IEnumerable<InventoryItem> GetAll()

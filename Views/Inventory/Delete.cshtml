@@ -15,30 +15,52 @@
     }
 }
 
-<div class="page-header mb-4">
-    <div>
-        <p class="eyebrow text-danger">Remove inventory item</p>
-        <h1>Delete item</h1>
-        <p class="text-muted">This will remove the item from your inventory.</p>
+<div style="max-width: 700px; margin: 0 auto;">
+    <!-- Page Header -->
+    <div class="page-header" style="margin-bottom: 2.5rem; text-align: left;">
+        <h1 class="page-title" style="font-size: 2rem; color: #dc2626;">⚠️ Delete Product</h1>
+        <p class="page-subtitle">This action will permanently remove the item from your inventory</p>
     </div>
-    <a asp-action="Index" class="btn btn-outline-secondary">Back to inventory</a>
-</div>
 
-<div class="card card-panel border-danger-subtle">
-    <div class="card-body">
-        <h5 class="mb-3">Are you sure you want to delete <strong>@Model.Name</strong>?</h5>
-        <dl class="detail-list mb-4">
-            <dt>Category</dt>
-            <dd>@Model.Category</dd>
-            <dt>Quantity</dt>
-            <dd>@Model.Quantity @GetUnitShortName(Model.Unit)</dd>
-            <dt>Price per unit</dt>
-            <dd>₱ @Model.Price.ToString("N2")</dd>
-        </dl>
-        <form asp-action="Delete" method="post">
+    <!-- Delete Confirmation Container -->
+    <div style="background: var(--bg-secondary); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow-sm); border: 2px solid #fecaca;">
+        <div style="background: #fef2f2; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.5rem; border-left: 4px solid #dc2626;">
+            <p style="margin: 0; color: #dc2626; font-weight: 600;">Are you sure you want to delete <strong>@Model.Name</strong>?</p>
+            <p style="margin: 0.5rem 0 0 0; color: #991b1b; font-size: 0.9rem;">This action cannot be undone.</p>
+        </div>
+
+        <!-- Item Summary -->
+        <div style="margin-bottom: 2rem;">
+            <h5 style="font-weight: 600; margin-bottom: 1rem; color: var(--text-primary);">Item Details</h5>
+            <div style="background: var(--bg-primary); border-radius: 0.5rem; padding: 1rem;">
+                <div style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                    <span style="font-weight: 600; color: var(--text-primary);">Category</span>
+                    <span style="color: var(--text-secondary);">@Model.Category</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color);">
+                    <span style="font-weight: 600; color: var(--text-primary);">Quantity</span>
+                    <span style="color: var(--text-secondary);">@Model.Quantity @GetUnitShortName(Model.Unit)</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 0.75rem 0;">
+                    <span style="font-weight: 600; color: var(--text-primary);">Price per Unit</span>
+                    <span style="color: var(--primary); font-weight: 600;">₱ @Model.Price.ToString("N2")</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <form asp-action="Delete" method="post" style="display: flex; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
             <input type="hidden" asp-for="Id" />
-            <button type="submit" class="btn btn-danger me-2">Delete</button>
-            <a asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+            
+            <button type="submit" 
+                    style="flex: 1; padding: 0.875rem 1.5rem; background: #dc2626; color: white; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);">
+                🗑️ Delete Permanently
+            </button>
+            
+            <a asp-action="Index" 
+               style="flex: 1; padding: 0.875rem 1.5rem; background: var(--bg-primary); border: 1.5px solid var(--border-color); color: var(--text-primary); text-align: center; display: flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; cursor: pointer;">
+                ✕ Cancel
+            </a>
         </form>
     </div>
 </div>

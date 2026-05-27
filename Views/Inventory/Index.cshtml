@@ -27,9 +27,24 @@
 
 <!-- Filters -->
 <div class="inventory-filters">
-    <a href="@Url.Action("Index", "Inventory")" class="@(string.IsNullOrEmpty(selectedCategory) ? "active" : "")">All Products</a>
-    <a href="@Url.Action("Index", "Inventory", new { category = "Premium" })" class="@(selectedCategory == "Premium" ? "active" : "")">Premium</a>
-    <a href="@Url.Action("Index", "Inventory", new { category = "Regular" })" class="@(selectedCategory == "Regular" ? "active" : "")">Regular</a>
+    <a href="@Url.Action("Index", "Inventory")" class="filter-btn @(string.IsNullOrEmpty(selectedCategory) ? "active" : "")">
+        <span>📦</span> All Products
+    </a>
+    <a href="@Url.Action("Index", "Inventory", new { category = "HoneyGlazedCrispy" })" class="filter-btn @(selectedCategory == "HoneyGlazedCrispy" ? "active" : "")">
+        <span>🍯</span> Honey Glazed
+    </a>
+    <a href="@Url.Action("Index", "Inventory", new { category = "SaltedCaramelCrispy" })" class="filter-btn @(selectedCategory == "SaltedCaramelCrispy" ? "active" : "")">
+        <span>🍮</span> Salted Caramel
+    </a>
+    <a href="@Url.Action("Index", "Inventory", new { category = "SaltedPili" })" class="filter-btn @(selectedCategory == "SaltedPili" ? "active" : "")">
+        <span>🧂</span> Salted
+    </a>
+    <a href="@Url.Action("Index", "Inventory", new { category = "RoastedPili" })" class="filter-btn @(selectedCategory == "RoastedPili" ? "active" : "")">
+        <span>🔥</span> Roasted
+    </a>
+    <a href="@Url.Action("Index", "Inventory", new { category = "SweetChilliPili" })" class="filter-btn @(selectedCategory == "SweetChilliPili" ? "active" : "")">
+        <span>🌶️</span> Sweet Chilli
+    </a>
 </div>
 
 @if (!Model.Any())
@@ -48,14 +63,7 @@ else
         {
             <div class="inventory-card">
                 <div class="inventory-card-img">
-                    @if (!string.IsNullOrEmpty(item.ImagePath))
-                    {
-                        <img src="@item.ImagePath" alt="@item.Name" />
-                    }
-                    else
-                    {
-                        <span>🥜</span>
-                    }
+                    <img src="@item.GetImagePath()" alt="@item.Name" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>🥜</span>'" />
                 </div>
                 <div class="inventory-card-body">
                     <div class="inventory-card-title">@item.Name</div>

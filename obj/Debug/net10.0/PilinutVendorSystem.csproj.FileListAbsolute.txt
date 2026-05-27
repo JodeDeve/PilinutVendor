@@ -95,4 +95,5 @@
 /Users/jodey/ManagementApp/newAzecateManagementApp/PilinutVendorSystem/obj/Debug/net10.0/PilinutVendorSystem.pdb
 /Users/jodey/ManagementApp/newAzecateManagementApp/PilinutVendorSystem/obj/Debug/net10.0/PilinutVendorSystem.genruntimeconfig.cache
 /Users/jodey/ManagementApp/newAzecateManagementApp/PilinutVendorSystem/obj/Debug/net10.0/ref/PilinutVendorSystem.dll
-/Users/jodey/ManagementApp/newAzecateManagementApp/PilinutVendorSystem/obj/Debug/net10.0/compressed/poeu7q16uh-{0}-n8e4osqdmb-n8e4osqdmb.gz
+/Users/jodey/ManagementApp/newAzecateManagementApp/PilinutVendorSystem/obj/Debug/net10.0/compressed/poeu7q16uh-{0}-lxf6hw3u6f-lxf6hw3u6f.gz
+/Users/jodey/ManagementApp/newAzecateManagementApp/PilinutVendorSystem/obj/Debug/net10.0/compressed/pmicgfk65h-{0}-cz1itrhcoi-cz1itrhcoi.gz

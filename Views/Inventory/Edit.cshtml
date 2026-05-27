@@ -3,72 +3,111 @@
     ViewData["Title"] = "Edit item";
 }
 
-<div class="page-header mb-4">
-    <div>
-        <p class="eyebrow">Edit inventory item</p>
-        <h1>Update product</h1>
-        <p class="text-muted">Adjust quantity, price, or category.</p>
+<div style="max-width: 700px; margin: 0 auto;">
+    <!-- Page Header -->
+    <div class="page-header" style="margin-bottom: 2.5rem; text-align: left;">
+        <h1 class="page-title" style="font-size: 2rem;">✎ Edit Product</h1>
+        <p class="page-subtitle">Update product information, pricing, or inventory</p>
     </div>
-    <a asp-action="Index" class="btn btn-outline-secondary">Back to inventory</a>
-</div>
 
-<div class="card card-panel">
-    <div class="card-body">
+    <!-- Form Container -->
+    <div class="form-section" style="background: var(--bg-secondary); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="Id" />
             <div asp-validation-summary="ModelOnly" class="validation-summary"></div>
 
-            <div class="row gy-3">
-                <div class="col-md-6">
-                    <label asp-for="Name" class="form-label"></label>
-                    <input asp-for="Name" class="form-control form-control-lg" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
+            <!-- Product Name -->
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label asp-for="Name" class="form-label" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                    Product Name <span style="color: var(--primary);">*</span>
+                </label>
+                <input asp-for="Name" class="form-control" 
+                       style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--bg-primary);" />
+                <span asp-validation-for="Name" style="color: var(--primary); font-size: 0.85rem; display: block; margin-top: 0.25rem;"></span>
+            </div>
+
+            <!-- Category -->
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label asp-for="Category" class="form-label" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                    Flavor Category <span style="color: var(--primary);">*</span>
+                </label>
+                <select asp-for="Category" class="form-select" asp-items="Html.GetEnumSelectList<PilinutVendorSystem.Models.CategoryType>()"
+                        style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--bg-primary); cursor: pointer;">
+                </select>
+                <span asp-validation-for="Category" style="color: var(--primary); font-size: 0.85rem; display: block; margin-top: 0.25rem;"></span>
+            </div>
+
+            <!-- Quantity & Unit Row -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                <div class="form-group">
+                    <label asp-for="Quantity" class="form-label" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                        Quantity <span style="color: var(--primary);">*</span>
+                    </label>
+                    <input asp-for="Quantity" type="number" step="0.01" class="form-control" 
+                           style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--bg-primary);" />
+                    <span asp-validation-for="Quantity" style="color: var(--primary); font-size: 0.85rem; display: block; margin-top: 0.25rem;"></span>
                 </div>
 
-                <div class="col-md-6">
-                    <label asp-for="Category" class="form-label"></label>
-                    <select asp-for="Category" class="form-select form-select-lg" asp-items="Html.GetEnumSelectList<PilinutVendorSystem.Models.CategoryType>()"></select>
-                    <span asp-validation-for="Category" class="text-danger"></span>
-                </div>
-
-                <div class="col-md-6">
-                    <label asp-for="Quantity" class="form-label"></label>
-                    <input asp-for="Quantity" type="number" step="0.01" class="form-control form-control-lg" />
-                    <span asp-validation-for="Quantity" class="text-danger"></span>
-                </div>
-
-                <div class="col-md-6">
-                    <label asp-for="Unit" class="form-label"></label>
-                    <select asp-for="Unit" class="form-select form-select-lg" asp-items="Html.GetEnumSelectList<PilinutVendorSystem.Models.UnitType>()"></select>
-                    <span asp-validation-for="Unit" class="text-danger"></span>
-                </div>
-
-                <div class="col-md-6">
-                    <label asp-for="Price" class="form-label"></label>
-                    <input asp-for="Price" type="number" step="0.01" class="form-control form-control-lg" placeholder="e.g., 250" />
-                    <small class="text-muted">Price in Philippine Pesos (PHP)</small>
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-
-                @if (!string.IsNullOrEmpty(Model.ImagePath))
-                {
-                    <div class="col-md-12">
-                        <div class="image-preview mb-2">
-                            <img src="@Model.ImagePath" alt="@Model.Name" class="img-thumbnail" style="max-width: 200px; max-height: 200px; object-fit: cover;" />
-                        </div>
-                    </div>
-                }
-
-                <div class="col-md-12">
-                    <label for="imageFile" class="form-label">Update product photo</label>
-                    <input type="file" id="imageFile" name="imageFile" class="form-control form-control-lg" accept="image/*" />
-                    <small class="text-muted">JPG, PNG, GIF or WebP (optional)</small>
+                <div class="form-group">
+                    <label asp-for="Unit" class="form-label" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                        Unit <span style="color: var(--primary);">*</span>
+                    </label>
+                    <select asp-for="Unit" class="form-select" asp-items="Html.GetEnumSelectList<PilinutVendorSystem.Models.UnitType>()"
+                            style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--bg-primary); cursor: pointer;">
+                    </select>
+                    <span asp-validation-for="Unit" style="color: var(--primary); font-size: 0.85rem; display: block; margin-top: 0.25rem;"></span>
                 </div>
             </div>
 
-            <div class="mt-4">
-                <button type="submit" class="btn btn-primary btn-lg me-2">Save changes</button>
-                <a asp-action="Index" class="btn btn-outline-secondary btn-lg">Cancel</a>
+            <!-- Price -->
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label asp-for="Price" class="form-label" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                    Price (Philippine Pesos) <span style="color: var(--primary);">*</span>
+                </label>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 1.25rem; color: var(--text-secondary);">₱</span>
+                    <input asp-for="Price" type="number" step="0.01" class="form-control" 
+                           style="width: 100%; padding: 0.75rem 1rem; border: 1px solid var(--border-color); border-radius: 0.5rem; font-size: 1rem; background: var(--bg-primary);" />
+                </div>
+                <small style="color: var(--text-secondary); font-size: 0.85rem; display: block; margin-top: 0.25rem;">Price in Philippine Pesos</small>
+                <span asp-validation-for="Price" style="color: var(--primary); font-size: 0.85rem; display: block; margin-top: 0.25rem;"></span>
+            </div>
+
+            <!-- Current Image Preview -->
+            <div class="form-group" style="margin-bottom: 1.5rem;">
+                <label class="form-label" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">Current Image</label>
+                <div style="border-radius: 0.5rem; overflow: hidden; background: var(--bg-primary); padding: 0.5rem; min-height: 200px; display: flex; align-items: center; justify-content: center;">
+                    <img src="@Model.GetImagePath()" alt="@Model.Name" style="max-width: 100%; max-height: 250px; object-fit: cover; border-radius: 0.25rem;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\"font-size:3rem;\">🥜</span>'" />
+                </div>
+            </div>
+
+            <!-- Product Image -->
+            <div class="form-group" style="margin-bottom: 2rem;">
+                <label for="imageFile" class="form-label" style="display: block; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary);">
+                    Update Product Image
+                </label>
+                <div style="border: 2px dashed var(--border-color); border-radius: 0.5rem; padding: 2rem; text-align: center; transition: all 0.3s ease; background: var(--bg-primary); cursor: pointer;" 
+                     onmouseover="this.style.borderColor='var(--primary)'; this.style.backgroundColor='var(--primary-light)';" 
+                     onmouseout="this.style.borderColor='var(--border-color)'; this.style.backgroundColor='var(--bg-primary)';">
+                    <input type="file" id="imageFile" name="imageFile" class="form-control" accept="image/*" style="display: none;" />
+                    <label for="imageFile" style="cursor: pointer; display: block; margin: 0;">
+                        <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">🖼️</span>
+                        <p style="margin: 0; color: var(--text-primary); font-weight: 500;">Click to upload or drag and drop</p>
+                        <small style="color: var(--text-secondary);">JPG, PNG, GIF or WebP (optional)</small>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div style="display: flex; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);">
+                <button type="submit" class="btn-primary" 
+                        style="flex: 1; padding: 0.875rem 1.5rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; border-radius: 0.5rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; box-shadow: var(--shadow-sm);">
+                    💾 Save Changes
+                </button>
+                <a asp-action="Index" class="btn-outline-secondary" 
+                   style="flex: 1; padding: 0.875rem 1.5rem; background: var(--bg-primary); border: 1.5px solid var(--border-color); color: var(--text-primary); text-align: center; display: flex; align-items: center; justify-content: center; text-decoration: none; border-radius: 0.5rem; font-weight: 600; transition: all 0.3s ease; cursor: pointer;">
+                    ✕ Cancel
+                </a>
             </div>
         </form>
     </div>
