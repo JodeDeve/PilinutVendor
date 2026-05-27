@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PilinutVendorSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b568e00b90c918116004ab5da506a741604e2705")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+420596867b69d5d6e477efd96793ccfb834d8bd4")]
 [assembly: System.Reflection.AssemblyProductAttribute("PilinutVendorSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PilinutVendorSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

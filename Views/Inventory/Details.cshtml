@@ -18,7 +18,7 @@
 <div style="max-width: 900px; margin: 0 auto;">
     <!-- Page Header -->
     <div class="page-header" style="margin-bottom: 2.5rem;">
-        <h1 class="page-title" style="font-size: 2rem;">👁 Product Details</h1>
+        <h1 class="page-title" style="font-size: 2rem;"> Product Details</h1>
         <p class="page-subtitle">Review the selected product information</p>
     </div>
 
@@ -27,7 +27,7 @@
         <!-- Product Image Section -->
         <div>
             <div style="background: var(--bg-secondary); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color); overflow: hidden; min-height: 300px; display: flex; align-items: center; justify-content: center;">
-                <img src="@Model.GetImagePath()" alt="@Model.Name" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; max-height: 350px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\"font-size:5rem;\">🥜</span>'" />
+                <img src="@Model.GetImagePath()" alt="@Model.Name" style="width: 100%; height: auto; border-radius: 0.5rem; object-fit: cover; max-height: 350px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\"font-size:5rem;\ />
             </div>
         </div>
 
@@ -39,23 +39,23 @@
                 <!-- Details List -->
                 <div style="margin-bottom: 2rem;">
                     <div style="display: flex; justify-content: space-between; padding: 1rem; border-bottom: 1px solid var(--border-color); align-items: center;">
-                        <span style="font-weight: 600; color: var(--text-primary);">🏷️ Category</span>
+                        <span style="font-weight: 600; color: var(--text-primary);"> Category</span>
                         <span style="color: var(--text-secondary);">@Model.Category</span>
                     </div>
 
                     <div style="display: flex; justify-content: space-between; padding: 1rem; border-bottom: 1px solid var(--border-color); align-items: center;">
-                        <span style="font-weight: 600; color: var(--text-primary);">📦 Stock Level</span>
+                        <span style="font-weight: 600; color: var(--text-primary);"> Stock Level</span>
                         <span style="color: var(--text-secondary); font-size: 1.1rem;">@Model.Quantity @GetUnitShortName(Model.Unit)</span>
                     </div>
 
                     <div style="display: flex; justify-content: space-between; padding: 1rem; border-bottom: 1px solid var(--border-color); align-items: center;">
-                        <span style="font-weight: 600; color: var(--text-primary);">💰 Unit Price</span>
+                        <span style="font-weight: 600; color: var(--text-primary);"> Unit Price</span>
                         <span style="color: var(--primary); font-size: 1.3rem; font-weight: 700;">₱@Model.Price.ToString("N2")</span>
                     </div>
 
                     <!-- Stock Status -->
                     <div style="display: flex; justify-content: space-between; padding: 1rem; align-items: center;">
-                        <span style="font-weight: 600; color: var(--text-primary);">📊 Status</span>
+                        <span style="font-weight: 600; color: var(--text-primary);"> Status</span>
                         <div>
                             @if (Model.Quantity == 0)
                             {
